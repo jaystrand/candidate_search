@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { fetchCandidate } from '../api/API.tsx';
+import { fetchCandidate, fetchInfo } from '../api/API.tsx';
+
 
 interface Candidate {
   name: string;
@@ -13,7 +14,7 @@ interface Candidate {
 
 const CandidateSearch: React.FC = () => {
   const [candidate, setCandidate] = useState<Candidate | null>(null);
-  const [username, setUsername] = useState<string>(''); // Current username to search
+  const [usernames, setUsernames] = useState<string[]>([]); // Current username to search
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   
@@ -27,9 +28,13 @@ const CandidateSearch: React.FC = () => {
     setError(null);
     try {
       // Assuming a predefined list of usernames to fetch
-      const candidateData = await fetchCandidate(username || 'octocat');
-      setCandidate(candidateData);
-      setUsername(''); // Reset username input
+      const candidateData = await fetchInfo();
+      const candidates = candidateData.map((candidate: any) => candidate.login);
+      console.log(candidateData[0]);
+      //setCandidate(candidateData[0]);
+      setUsernames(candidates); // Reset username input
+      const currentCandidate = await fetchCandidate(candidates[0]);
+      setCandidate(currentCandidate);
     } catch (err) {
       setError('Unable to fetch candidate.');
     } finally {
