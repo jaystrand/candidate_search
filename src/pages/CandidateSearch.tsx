@@ -14,7 +14,7 @@ interface Candidate {
 
 const CandidateSearch: React.FC = () => {
   const [candidate, setCandidate] = useState<Candidate | null>(null);
-  const [usernames, setUsernames] = useState<string[]>([]); // Current username to search
+  
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   
@@ -32,7 +32,7 @@ const CandidateSearch: React.FC = () => {
       const candidates = candidateData.map((candidate: any) => candidate.login);
       console.log(candidateData[0]);
       //setCandidate(candidateData[0]);
-      setUsernames(candidates); // Reset username input
+     
       const currentCandidate = await fetchCandidate(candidates[0]);
       setCandidate(currentCandidate);
     } catch (err) {
