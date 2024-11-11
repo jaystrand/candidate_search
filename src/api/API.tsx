@@ -8,7 +8,7 @@ const api = axios.create({
 });
 
 export const fetchInfo = async () => {
-  const response = await api.get(`/users?since=${Math.floor(Math.random() * 10)}`);
+  const response = await api.get(`/users?since=${Math.floor(Math.random() * 20)}`);
    return response.data;
 };
 
