@@ -1,15 +1,23 @@
-import { Outlet } from 'react-router-dom';
-import Nav from './components/Nav';
+import { Outlet, Link } from 'react-router-dom';
 
-function App() {
+const App = () => {
   return (
-    <>
-      <Nav />
-      <main>
-        <Outlet />
-      </main>
-    </>
+    <div>
+      <nav>
+        <ul>
+          <li>
+            <Link to="/">Candidate Search</Link>
+          </li>
+          <li>
+            <Link to="/saved-candidates">Saved Candidates</Link>
+          </li>
+        </ul>
+      </nav>
+
+      {/* This is crucial - it renders the child routes */}
+      <Outlet />
+    </div>
   );
-}
+};
 
 export default App;
