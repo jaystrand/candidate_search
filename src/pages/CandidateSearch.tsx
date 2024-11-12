@@ -52,8 +52,17 @@ const CandidateSearch: React.FC = () => {
         (candidate: Candidate) => !processedLogins.has(candidate.login)
       );
 
+      // Update candidates state and processed logins
       setCandidates(newCandidates);
-      setCurrentIndex(0);
+      setCurrentIndex(0); // Reset the currentIndex when new candidates are loaded
+
+      // Update the processed logins Set
+      const updatedProcessedLogins = new Set([
+        ...processedLogins,
+        ...newCandidates.map((candidate) => candidate.login),
+      ]);
+      setProcessedLogins(updatedProcessedLogins);
+
     } catch (err) {
       console.error("Error fetching candidates:", err);
       setError('Unable to fetch candidates.');
@@ -192,3 +201,4 @@ const CandidateSearch: React.FC = () => {
 };
 
 export default CandidateSearch;
+
