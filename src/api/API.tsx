@@ -8,7 +8,7 @@ const api = axios.create({
 });
 
 export const fetchInfo = async () => {
-  const response = await api.get(`/users?since=${Math.floor(Math.random() * 20)}`);
+  const response = await api.get(`/users?since=${Math.floor(Math.random() * 1000)}`);
   return response.data;
 };
 
@@ -16,3 +16,4 @@ export const fetchCandidate = async (username: string) => {
   const response = await api.get(`/users/${username}`);
   return response.data;
 };
+
