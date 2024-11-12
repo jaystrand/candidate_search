@@ -9,10 +9,10 @@ const api = axios.create({
 
 export const fetchInfo = async () => {
   const response = await api.get(`/users?since=${Math.floor(Math.random() * 20)}`);
-   return response.data;
+  return response.data;
 };
 
-export const fetchCandidate = async (username: string) => {  
+export const fetchCandidate = async (username: string) => {
   const response = await api.get(`/users/${username}`);
   return response.data;
 };

@@ -1,14 +1,5 @@
 import React, { useEffect, useState } from 'react';
-
-interface Candidate {
-  name: string;
-  login: string;
-  location: string;
-  avatar_url: string;
-  email: string;
-  html_url: string;
-  company: string;
-}
+import { Candidate } from '../interfaces/Candidate.interface';
 
 const SavedCandidates: React.FC = () => {
   const [savedCandidates, setSavedCandidates] = useState<Candidate[]>([]);
@@ -38,7 +29,7 @@ const SavedCandidates: React.FC = () => {
           <tbody>
             {savedCandidates.map((candidate, index) => (
               <tr key={index}>
-                <td><img src={candidate.avatar_url} alt={candidate.name} style={{width: '50px'}} /></td>
+                <td><img src={candidate.avatar_url} alt={candidate.name} style={{ width: '50px' }} /></td>
                 <td>{candidate.name} ({candidate.login})</td>
                 <td>{candidate.location}</td>
                 <td>{candidate.email}</td>
