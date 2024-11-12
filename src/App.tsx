@@ -1,20 +1,10 @@
-import { Outlet, Link } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
+import Nav from './components/Nav';
 
 const App = () => {
   return (
     <div>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Candidate Search</Link>
-          </li>
-          <li>
-            <Link to="/saved-candidates">Saved Candidates</Link>
-          </li>
-        </ul>
-      </nav>
-
-      {/* This is crucial - it renders the child routes */}
+      <Nav />
       <Outlet />
     </div>
   );
